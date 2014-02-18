@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/stylesheets/skeleton.css">
+    <link rel="stylesheet" href="/stylesheets/layout.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/game.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div id="welcome" class="sixteen columns">
+          <h1><%= title %></h1>
+        </div>
+      </div>
+      <div id="game" class="row">
+        <div id="users" class="four columns"></div>
+        <div id="submit" class="eight columns">
+          <form>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
