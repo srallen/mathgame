@@ -19,13 +19,14 @@ a {
 
 #users {
   border-right: solid thin #ccc;
+  overflow: scroll;
   height: 500px;
 }
 
 #chat {
   position: absolute;
   overflow: scroll;
-/*  height: 447px;*/
+  height: 447px;
 }
 
 #submission {

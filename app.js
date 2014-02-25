@@ -7,7 +7,6 @@ var express = require('express');
 var routes  = require('./routes');
 var user    = require('./routes/user');
 var path    = require('path');
-var Moniker = require('moniker');
 
 var app     = express();
 var server  = require('http').createServer(app);
@@ -32,20 +31,15 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-// app.get('/users', user.list);
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+// Users connected to server
 var users = [];
 
 io.sockets.on('connection', function(socket) {
-  // var currentUser = {
-  //   username: Moniker.choose(),
-  //   correct: 0
-  // }
-  // users.push(currentUser);
   var currentUser = user.addUser(users);
 
   socket.emit('welcome', currentUser);
