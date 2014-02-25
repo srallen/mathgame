@@ -7,8 +7,9 @@ a {
   color: #00B7FF;
 }
 
-.container {
-
+.container .columns {
+/*  margin-right: 0px;
+  margin-left: 0px;*/
 }
 
 #game {
@@ -19,4 +20,29 @@ a {
 #users {
   border-right: solid thin #ccc;
   height: 500px;
+}
+
+#chat {
+  position: absolute;
+  overflow: scroll;
+/*  height: 447px;*/
+}
+
+#submission {
+  border-top: solid thin #ccc;
+  position: absolute;
+  bottom: 0;
+}
+
+#submission_form {
+  padding: 5px;
+}
+
+input {
+  display: block inline;
+  float: left;
+}
+
+#submission_text {
+  width: 80%;
 }

@@ -4,12 +4,12 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var path = require('path');
-// var Moniker = require('moniker');
+var routes  = require('./routes');
+var user    = require('./routes/user');
+var path    = require('path');
+var Moniker = require('moniker');
 
-var app = express();
+var app     = express();
 var server  = require('http').createServer(app);
 var io      = require('socket.io').listen(server);
 
@@ -38,15 +38,24 @@ server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-io.sockets.on('connection', function(client) {
-  var currentUser = user.addUser();
-  var userList = user.userList();
+var users = [];
 
-  client.emit('welcome', currentUser);
-  client.emit('users', userList);
+io.sockets.on('connection', function(socket) {
+  // var currentUser = {
+  //   username: Moniker.choose(),
+  //   correct: 0
+  // }
+  // users.push(currentUser);
+  var currentUser = user.addUser(users);
 
-  client.on('disconnect', function() {
-    user.removeUser(currentUser);
+  socket.emit('welcome', currentUser);
+  io.sockets.emit('join_message', currentUser.username);
+  io.sockets.emit('users', users);
+
+  socket.on('disconnect', function() {
+    socket.broadcast.emit('leave_message', currentUser.username);
+    user.removeUser(currentUser, users);
+    socket.broadcast.emit('users', users)
   });
 });
 

@@ -8,34 +8,23 @@
 // };
 
 var Moniker = require('moniker');
-var users = [];
 
-exports.addUser = function() {
+exports.addUser = function(users) {
   var user = {
     username: Moniker.choose(),
     correct: 0
   }
 
   users.push(user);
-  // updateUserlist();
   return user;
 }
 
-exports.removeUser = function(currentUser) {
+exports.removeUser = function(currentUser, users) {
   for (var i = users.length - 1; i >= 0; i--) {
-    if (currentUser.name === users[i].name) {
+    if (currentUser === users[i]) {
       users.splice(i, 1);
       return;
-    };
-  };
+    }
+  }
 }
 
-
-exports.userList = function() {
-  var str = '';
-  for (var i = users.length - 1; i >= 0; i--) {
-    var user = users[i];
-    str += "<li>" + user.username + ": " + user.correct + "</li>";
-  };
-  return str;
-}
