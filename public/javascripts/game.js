@@ -18,6 +18,10 @@ window.onload = function() {
     users.innerHTML = "<ul>" + str + "</ul>";
   });
 
+  server.on('challenge', function(data) {
+    chat.innerHTML = "<p>" + data + "?</p>";
+  });
+
   server.on('join_message', function(data) {
     chat.innerHTML += "<p>" + data + " joins the game.</p>";
   });

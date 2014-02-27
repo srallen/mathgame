@@ -6,6 +6,7 @@
 var express = require('express');
 var routes  = require('./routes');
 var user    = require('./routes/user');
+var math    = require('./math.js');
 var path    = require('path');
 
 var app     = express();
@@ -38,6 +39,7 @@ server.listen(app.get('port'), function(){
 
 // Users connected to server
 var users = [];
+var challenge = math.randomMath();
 
 io.sockets.on('connection', function(socket) {
   var currentUser = user.addUser(users);
@@ -45,6 +47,7 @@ io.sockets.on('connection', function(socket) {
   socket.emit('welcome', currentUser);
   io.sockets.emit('join_message', currentUser.username);
   io.sockets.emit('users', users);
+  io.sockets.emit('challenge', challenge[0]);
 
   socket.on('disconnect', function() {
     socket.broadcast.emit('leave_message', currentUser.username);
@@ -52,6 +55,8 @@ io.sockets.on('connection', function(socket) {
     socket.broadcast.emit('users', users)
   });
 });
+
+
 
 
 
