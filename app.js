@@ -39,18 +39,30 @@ server.listen(app.get('port'), function(){
 
 // Users connected to server
 var users = [];
-var challenge = math.randomMath();
+
 
 io.sockets.on('connection', function(socket) {
   var currentUser = user.addUser(users);
+  var challenge = math.randomMath();
+  console.log(challenge);
 
   socket.emit('welcome', currentUser);
-  io.sockets.emit('join_message', currentUser.username);
+  io.sockets.emit('message', currentUser.username + ' joins the game.');
   io.sockets.emit('users', users);
-  io.sockets.emit('challenge', challenge[0]);
+
+
+  socket.on('send', function(answer) {
+    if (answer == String(challenge.solution)) {
+      math.checkAnswer(answer, challenge)
+      io.sockets.emit('message', currentUser.username + ' answered correctly with ' + answer + '.');
+      io.sockets.emit('users', users);
+    } else {
+      socket.emit('message', 'Please try again.');
+    }
+  });
 
   socket.on('disconnect', function() {
-    socket.broadcast.emit('leave_message', currentUser.username);
+    socket.broadcast.emit('message', currentUser.username + ' leaves the game.');
     user.removeUser(currentUser, users);
     socket.broadcast.emit('users', users)
   });

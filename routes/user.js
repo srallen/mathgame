@@ -19,6 +19,11 @@ exports.addUser = function(users) {
   return user;
 }
 
+exports.gainPoint = function(currentUser) {
+  currentUser.correct += 1;
+  return currentUser;
+}
+
 exports.removeUser = function(currentUser, users) {
   for (var i = users.length - 1; i >= 0; i--) {
     if (currentUser === users[i]) {
