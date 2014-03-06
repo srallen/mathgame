@@ -26,10 +26,11 @@ window.onload = function() {
   });
 
   submitButton.onclick = function(e) {
-    var submission = document.getElementById('submission_text').value;
+    var submission = field.value;
 
     e.preventDefault();
     client.emit('send', submission);
+    field.value = '';
   };
 
   field.addEventListener('keypress', function (e) {

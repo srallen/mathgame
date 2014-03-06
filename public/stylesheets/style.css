@@ -1,6 +1,22 @@
+h1, h2 {
+  font-family: Courier;
+  color: rgb(49, 231, 34);
+}
+
+p {
+  color: rgb(49, 231, 34);
+  padding-top: 5px;
+}
+
+ul {
+  color: rgb(49, 231, 34);
+  padding-top: 5px;
+}
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Courier;
+  background-color: black;
 }
 
 a {
@@ -13,12 +29,12 @@ a {
 }
 
 #game {
-  border: solid thin #ccc;
+  border: solid thin rgb(49, 231, 34);
   height: 500px;
 }
 
 #users {
-  border-right: solid thin #ccc;
+  border-right: solid thin rgb(49, 231, 34);
   overflow: scroll;
   height: 500px;
 }
@@ -30,7 +46,7 @@ a {
 }
 
 #submission {
-  border-top: solid thin #ccc;
+/*  border-top: solid thin rgb(49, 231, 34);*/
   position: absolute;
   bottom: 0;
 }
@@ -46,4 +62,6 @@ input {
 
 #submission_text {
   width: 80%;
+  margin-top: 2px;
+  margin-right: 5px;
 }
