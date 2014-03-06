@@ -1,5 +1,5 @@
 var app     = require('../app.js'),
-    user    = require('../routes/user.js'),
+    user    = require('../lib/modules/user.js'),
     io      = require('../node_modules/socket.io/node_modules/socket.io-client'),
     http = require('http'),
     assert  = require('assert');

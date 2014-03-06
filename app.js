@@ -3,16 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes  = require('./routes');
-var user    = require('./routes/user');
-var math    = require('./math.js');
-var path    = require('path');
-
-var app     = express();
-var server  = require('http').createServer(app);
-var io      = require('socket.io').listen(server);
-
+var express = require('express'),
+    routes  = require('./routes'),
+    path    = require('path'),
+    app     = express(),
+    server  = require('http').createServer(app),
+    math    = require('./lib/modules/math.js');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -37,36 +33,8 @@ server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-// Users connected to server
-var users = [];
+math.initGame(server);
 
-
-io.sockets.on('connection', function(socket) {
-  var currentUser = user.addUser(users);
-  var challenge = math.randomMath();
-  console.log(challenge);
-
-  socket.emit('welcome', currentUser);
-  io.sockets.emit('message', currentUser.username + ' joins the game.');
-  io.sockets.emit('users', users);
-
-
-  socket.on('send', function(answer) {
-    if (answer == String(challenge.solution)) {
-      math.checkAnswer(answer, challenge)
-      io.sockets.emit('message', currentUser.username + ' answered correctly with ' + answer + '.');
-      io.sockets.emit('users', users);
-    } else {
-      socket.emit('message', 'Please try again.');
-    }
-  });
-
-  socket.on('disconnect', function() {
-    socket.broadcast.emit('message', currentUser.username + ' leaves the game.');
-    user.removeUser(currentUser, users);
-    socket.broadcast.emit('users', users)
-  });
-});
 
 
 
