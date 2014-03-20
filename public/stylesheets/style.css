@@ -58,6 +58,7 @@ a {
 input {
   display: block inline;
   float: left;
+  border: solid thin rgb(49, 231, 34);
 }
 
 #submission_text {
