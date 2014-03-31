@@ -1,5 +1,5 @@
 window.onload = function() {
-  var client = io.connect('http://localhost:3000'),
+  var client = io.connect('http://mighty-beyond-9595.herokuapp.com/'),
       welcome = document.getElementById('welcome'),
       users = document.getElementById('users'),
       chat = document.getElementById('chat'),
