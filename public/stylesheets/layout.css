@@ -17,6 +17,100 @@
 /* #Site Styles
 ================================================== */
 
+h1, h2 {
+  font-family: Courier;
+  color: rgb(49, 231, 34);
+}
+
+p {
+  color: rgb(49, 231, 34);
+  padding-top: 5px;
+}
+
+ul {
+  color: rgb(49, 231, 34);
+  padding-top: 5px;
+}
+
+body {
+  padding: 50px;
+  font: 14px Courier;
+  background-color: black;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.container .columns {
+/*  margin-right: 0px;
+  margin-left: 0px;*/
+}
+
+#game {
+  border: solid thin rgb(49, 231, 34);
+  height: 500px;
+}
+
+#users {
+  border-right: solid thin rgb(49, 231, 34);
+  overflow: auto;
+  height: 500px;
+}
+
+#chat {
+  position: absolute;
+  overflow: auto;
+  height: 400px;
+}
+
+#submission {
+/*  border-top: solid thin rgb(49, 231, 34);*/
+  position: absolute;
+  bottom: 0;
+}
+
+#submission_form {
+  padding: 5px;
+}
+
+input[type="text"] {
+	font-family: Courier;
+  display: block inline;
+  float: left;
+  border: solid thin rgb(49, 231, 34);
+  background-color: black;
+  color: rgb(49, 231, 34);
+}
+
+input[type="text"]:focus {
+	font-family: Courier;
+	color: rgb(49, 231, 34);
+}
+
+input[type="button"] {
+	font-family: Courier;
+  border: solid thin rgb(49, 231, 34);
+  background-color: black;
+  color: rgb(49, 231, 34);
+  text-shadow: 0 0;
+  font-weight: 100;
+}
+
+input[type="button"]:hover {
+	font-family: Courier;
+  background-color: black;
+  color: rgb(49, 231, 34);
+  text-shadow: 0 0;
+  font-weight: 100;
+}
+
+#submission_text {
+  width: 80%;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
 /* #Page Styles
 ================================================== */
 

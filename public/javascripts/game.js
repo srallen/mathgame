@@ -13,6 +13,7 @@ window.onload = function() {
 
   client.on('users', function(data) {
     var str = '';
+    data.sort(function(a,b){return a.correct - b.correct});
     for (var i = data.length - 1; i >= 0; i--) {
       var user = data[i];
       str += "<li>" + user.username + ": " + user.correct + "</li>";
@@ -23,6 +24,7 @@ window.onload = function() {
 
   client.on('message', function(data) {
     chat.innerHTML += "<p>" + data + "</p>"
+    chat.scrollTop = chat.scrollHeight;
   });
 
   submitButton.onclick = function(e) {
@@ -34,7 +36,7 @@ window.onload = function() {
     field.value = '';
   };
 
-  field.addEventListener('keydown', function (e) {
+  field.addEventListener('keydown', function(e) {
     var key = e.which || e.keyCode;
     var submission = field.value;
 
@@ -45,4 +47,5 @@ window.onload = function() {
       field.value = '';
     }
   });
+
 }

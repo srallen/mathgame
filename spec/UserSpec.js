@@ -1,8 +1,8 @@
-var app     = require('../app.js'),
-    user    = require('../lib/modules/user.js'),
-    io      = require('../node_modules/socket.io/node_modules/socket.io-client'),
-    http = require('http'),
-    assert  = require('assert');
+var //app     = require('../app.js'),
+    userjs    = require('../lib/modules/user.js'),
+    //io      = require('../node_modules/socket.io/node_modules/socket.io-client'),
+    http    = require('http');
+    //assert  = require('assert');
 
 var users = [];
 
@@ -36,27 +36,40 @@ describe("User", function() {
   //   // done();
   // });
 
+  for (var i = users.length - 1; i >= 0; i--) {
+    user = users[i];
+  };
+
   it("should be able to create a new user", function() {
-    var newUser = user.addUser(users);
+    var newUser = userjs.addUser(users);
     expect(newUser).not.toBeNull();
     expect(newUser.username).toBeDefined();
     expect(newUser.correct).toEqual(0);
   });
 
-  // it("should emit a welcome message", function() {
-  //   http.get("http://localhost:3000/", function(error, response) {
-  //     expect(response.body).toEqual("Welcome, " + users[1].username);
-  //     done();
-  //   });
-  // });
+  it("should emit a welcome message", function() {
+    http.get("http://localhost:3000/", function(error, response) {
+      expect(response.body).toEqual("Welcome, " + users[1].username);
+      done();
+    });
+  });
+
+  it("should emit user list", function() {
+    http.get("http://localhost:3000/", function(error, response) {
+      expect(reponse.body).toEqual(
+        "<li>" + user.username + ": " + user.correct + "</li>"
+      );
+      done();
+    });
+  });
 
   it("should be able to add an additional new user to user list", function() {
-    var newerUser = user.addUser(users);
+    var newerUser = userjs.addUser(users);
     expect(users.length).toEqual(2);
   });
 
   it("should be able to delete a user", function() {
-    user.removeUser(users[1], users);
+    userjs.removeUser(users[1], users);
     expect(users.length).toEqual(1);
   });
 });
